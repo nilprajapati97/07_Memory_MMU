@@ -1,0 +1,100 @@
+
+========================================
+  Linux Thread Scheduler Simulation
+========================================
+Demonstrating:
+  - Thread creation and management
+  - Mutex locks for synchronization
+  - Condition variables for coordination
+  - Thread state transitions
+  - Context switching
+========================================
+
+[MAIN THREAD] Initializing synchronization primitives
+    Mutex initialized
+    Condition variable initialized
+    Starting counter: 1
+
+[MAIN THREAD] Creating worker threads...
+
+[THREAD CREATED] ODD_THREAD (TID: 123969384478400) - State: READY
+    [LOCK ACQUIRED] ODD_THREAD acquired mutex
+
+>>> [ODD_THREAD] Printing: 1
+    [SIGNAL] ODD_THREAD signaling EVEN_THREAD
+    [LOCK RELEASED] ODD_THREAD released mutex
+
+
+[MAIN THREAD] Both threads created successfully
+[MAIN THREAD] State: RUNNING -> WAITING (waiting for threads to join)
+
+[MAIN THREAD] Waiting for ODD_THREAD to join...
+
+[THREAD CREATED] EVEN_THREAD (TID: 123969376085696) - State: READY
+    [LOCK ACQUIRED] EVEN_THREAD acquired mutex
+
+>>> [EVEN_THREAD] Printing: 2
+    [SIGNAL] EVEN_THREAD signaling ODD_THREAD
+    [LOCK RELEASED] EVEN_THREAD released mutex
+
+    [LOCK ACQUIRED] ODD_THREAD acquired mutex
+
+>>> [ODD_THREAD] Printing: 3
+    [SIGNAL] ODD_THREAD signaling EVEN_THREAD
+    [LOCK RELEASED] ODD_THREAD released mutex
+
+    [LOCK ACQUIRED] EVEN_THREAD acquired mutex
+
+>>> [EVEN_THREAD] Printing: 4
+    [SIGNAL] EVEN_THREAD signaling ODD_THREAD
+    [LOCK RELEASED] EVEN_THREAD released mutex
+
+    [LOCK ACQUIRED] EVEN_THREAD acquired mutex
+    [WAITING] EVEN_THREAD waiting for condition (counter=5)
+    [STATE CHANGE] EVEN_THREAD: RUNNING -> WAITING
+    [LOCK ACQUIRED] ODD_THREAD acquired mutex
+
+>>> [ODD_THREAD] Printing: 5
+    [SIGNAL] ODD_THREAD signaling EVEN_THREAD
+    [LOCK RELEASED] ODD_THREAD released mutex
+
+    [STATE CHANGE] EVEN_THREAD: WAITING -> READY -> RUNNING
+        [SCHEDULER] Context switch for EVEN_THREAD (Total: 1)
+
+>>> [EVEN_THREAD] Printing: 6
+    [SIGNAL] EVEN_THREAD signaling ODD_THREAD
+    [LOCK RELEASED] EVEN_THREAD released mutex
+
+    [LOCK ACQUIRED] ODD_THREAD acquired mutex
+
+>>> [ODD_THREAD] Printing: 7
+    [SIGNAL] ODD_THREAD signaling EVEN_THREAD
+    [LOCK RELEASED] ODD_THREAD released mutex
+
+    [LOCK ACQUIRED] EVEN_THREAD acquired mutex
+
+>>> [EVEN_THREAD] Printing: 8
+    [SIGNAL] EVEN_THREAD signaling ODD_THREAD
+    [LOCK RELEASED] EVEN_THREAD released mutex
+
+    [LOCK ACQUIRED] EVEN_THREAD acquired mutex
+    [WAITING] EVEN_THREAD waiting for condition (counter=9)
+    [STATE CHANGE] EVEN_THREAD: RUNNING -> WAITING
+    [LOCK ACQUIRED] ODD_THREAD acquired mutex
+
+>>> [ODD_THREAD] Printing: 9
+    [SIGNAL] ODD_THREAD signaling EVEN_THREAD
+    [LOCK RELEASED] ODD_THREAD released mutex
+
+    [STATE CHANGE] EVEN_THREAD: WAITING -> READY -> RUNNING
+        [SCHEDULER] Context switch for EVEN_THREAD (Total: 2)
+
+>>> [EVEN_THREAD] Printing: 10
+    [SIGNAL] EVEN_THREAD signaling ODD_THREAD
+    [LOCK RELEASED] EVEN_THREAD released mutex
+
+    [LOCK ACQUIRED] ODD_THREAD acquired mutex
+
+>>> [ODD_THREAD] Printing: 11
+    [SIGNAL] ODD_THREAD signaling EVEN_THREAD
+    [LOCK RELEASED] ODD_THREAD released mutex

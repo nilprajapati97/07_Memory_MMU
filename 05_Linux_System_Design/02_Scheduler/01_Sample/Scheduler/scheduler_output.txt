@@ -1,0 +1,161 @@
+
+[SYSTEM] Initializing processes...
+
+[SCHEDULER] Process WebBrowser (PID:1) added to run queue
+[SCHEDULER] Process VideoPlayer (PID:2) added to run queue
+[SCHEDULER] Process TextEditor (PID:3) added to run queue
+[SCHEDULER] Process Compiler (PID:4) added to run queue
+
+========================================
+   Linux CFS Scheduler Simulation
+========================================
+Time Quantum: 4 units
+Total Processes: 4
+========================================
+
+
+[RUN QUEUE STATE] Processes: 4
+  PID:1 WebBrowser   | VRuntime:0    | Remaining:12 | Priority:15
+  PID:2 VideoPlayer  | VRuntime:0    | Remaining:8  | Priority:10
+  PID:3 TextEditor   | VRuntime:0    | Remaining:6  | Priority:18
+  PID:4 Compiler     | VRuntime:0    | Remaining:10 | Priority:12
+
+
+[TIME   0] Running Process: WebBrowser (PID:1)
+           Priority: 15 | Nice: 5 | VRuntime: 0
+           Remaining Time: 12 | Wait Time: 0
+
+           [Time Quantum Expired]
+             [CONTEXT SWITCH] Saving state of WebBrowser
+
+[RUN QUEUE STATE] Processes: 4
+  PID:1 WebBrowser   | VRuntime:20   | Remaining:8  | Priority:15
+  PID:2 VideoPlayer  | VRuntime:0    | Remaining:8  | Priority:10
+  PID:3 TextEditor   | VRuntime:0    | Remaining:6  | Priority:18
+  PID:4 Compiler     | VRuntime:0    | Remaining:10 | Priority:12
+
+
+[TIME   4] Running Process: VideoPlayer (PID:2)
+           Priority: 10 | Nice: 10 | VRuntime: 0
+           Remaining Time: 8 | Wait Time: 4
+
+           [Time Quantum Expired]
+             [CONTEXT SWITCH] Saving state of VideoPlayer
+
+[RUN QUEUE STATE] Processes: 4
+  PID:1 WebBrowser   | VRuntime:20   | Remaining:8  | Priority:15
+  PID:2 VideoPlayer  | VRuntime:40   | Remaining:4  | Priority:10
+  PID:3 TextEditor   | VRuntime:0    | Remaining:6  | Priority:18
+  PID:4 Compiler     | VRuntime:0    | Remaining:10 | Priority:12
+
+
+[TIME   8] Running Process: TextEditor (PID:3)
+           Priority: 18 | Nice: 2 | VRuntime: 0
+           Remaining Time: 6 | Wait Time: 8
+
+           [Time Quantum Expired]
+             [CONTEXT SWITCH] Saving state of TextEditor
+
+[RUN QUEUE STATE] Processes: 4
+  PID:1 WebBrowser   | VRuntime:20   | Remaining:8  | Priority:15
+  PID:2 VideoPlayer  | VRuntime:40   | Remaining:4  | Priority:10
+  PID:3 TextEditor   | VRuntime:8    | Remaining:2  | Priority:18
+  PID:4 Compiler     | VRuntime:0    | Remaining:10 | Priority:12
+
+
+[TIME  12] Running Process: Compiler (PID:4)
+           Priority: 12 | Nice: 8 | VRuntime: 0
+           Remaining Time: 10 | Wait Time: 12
+
+           [Time Quantum Expired]
+             [CONTEXT SWITCH] Saving state of Compiler
+
+[RUN QUEUE STATE] Processes: 4
+  PID:1 WebBrowser   | VRuntime:20   | Remaining:8  | Priority:15
+  PID:2 VideoPlayer  | VRuntime:40   | Remaining:4  | Priority:10
+  PID:3 TextEditor   | VRuntime:8    | Remaining:2  | Priority:18
+  PID:4 Compiler     | VRuntime:32   | Remaining:6  | Priority:12
+
+
+[TIME  16] Running Process: TextEditor (PID:3)
+           Priority: 18 | Nice: 2 | VRuntime: 8
+           Remaining Time: 2 | Wait Time: 12
+
+           >>> Process TextEditor COMPLETED <<<
+           Total Wait Time: 12
+           Turnaround Time: 18
+
+[RUN QUEUE STATE] Processes: 3
+  PID:1 WebBrowser   | VRuntime:20   | Remaining:8  | Priority:15
+  PID:2 VideoPlayer  | VRuntime:40   | Remaining:4  | Priority:10
+  PID:4 Compiler     | VRuntime:32   | Remaining:6  | Priority:12
+
+
+[TIME  18] Running Process: WebBrowser (PID:1)
+           Priority: 15 | Nice: 5 | VRuntime: 20
+           Remaining Time: 8 | Wait Time: 14
+
+           [Time Quantum Expired]
+             [CONTEXT SWITCH] Saving state of WebBrowser
+
+[RUN QUEUE STATE] Processes: 3
+  PID:1 WebBrowser   | VRuntime:40   | Remaining:4  | Priority:15
+  PID:2 VideoPlayer  | VRuntime:40   | Remaining:4  | Priority:10
+  PID:4 Compiler     | VRuntime:32   | Remaining:6  | Priority:12
+
+
+[TIME  22] Running Process: Compiler (PID:4)
+           Priority: 12 | Nice: 8 | VRuntime: 32
+           Remaining Time: 6 | Wait Time: 18
+
+           [Time Quantum Expired]
+             [CONTEXT SWITCH] Saving state of Compiler
+
+[RUN QUEUE STATE] Processes: 3
+  PID:1 WebBrowser   | VRuntime:40   | Remaining:4  | Priority:15
+  PID:2 VideoPlayer  | VRuntime:40   | Remaining:4  | Priority:10
+  PID:4 Compiler     | VRuntime:64   | Remaining:2  | Priority:12
+
+
+[TIME  26] Running Process: WebBrowser (PID:1)
+           Priority: 15 | Nice: 5 | VRuntime: 40
+           Remaining Time: 4 | Wait Time: 18
+
+           >>> Process WebBrowser COMPLETED <<<
+           Total Wait Time: 18
+           Turnaround Time: 30
+
+[RUN QUEUE STATE] Processes: 2
+  PID:2 VideoPlayer  | VRuntime:40   | Remaining:4  | Priority:10
+  PID:4 Compiler     | VRuntime:64   | Remaining:2  | Priority:12
+
+
+[TIME  30] Running Process: VideoPlayer (PID:2)
+           Priority: 10 | Nice: 10 | VRuntime: 40
+           Remaining Time: 4 | Wait Time: 26
+
+           >>> Process VideoPlayer COMPLETED <<<
+           Total Wait Time: 26
+           Turnaround Time: 34
+
+[RUN QUEUE STATE] Processes: 1
+  PID:4 Compiler     | VRuntime:64   | Remaining:2  | Priority:12
+
+
+[TIME  34] Running Process: Compiler (PID:4)
+           Priority: 12 | Nice: 8 | VRuntime: 64
+           Remaining Time: 2 | Wait Time: 26
+
+           >>> Process Compiler COMPLETED <<<
+           Total Wait Time: 26
+           Turnaround Time: 36
+
+========================================
+   Scheduling Complete
+========================================
+Total Time: 36 units
+Context Switches: 6
+Average Wait Time: 20.50 units
+Average Turnaround Time: 29.50 units
+========================================
+

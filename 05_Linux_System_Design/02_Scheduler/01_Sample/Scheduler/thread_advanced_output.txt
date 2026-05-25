@@ -1,0 +1,120 @@
+
+================================================================
+     Linux Thread Scheduler - Complete Implementation
+================================================================
+Demonstrating:
+  • Thread Control Blocks (TCB)
+  • Thread State Transitions (NEW->READY->RUNNING->WAITING)
+  • Mutex Locks (Critical Section Protection)
+  • Condition Variables (Thread Synchronization)
+  • Context Switching
+  • Virtual Runtime (CFS Scheduling)
+  • Priority-based Scheduling
+================================================================
+
+[MAIN] Initializing synchronization primitives...
+  • Mutex initialized
+  • Condition variable initialized
+  • Starting counter: 1
+  • Max number: 100
+
+[MAIN] Creating threads...
+    [SCHEDULER] ODD_THREAD: NEW -> READY
+
+[THREAD START] ODD_THREAD created (TID: 131258965292736)
+    [SCHEDULER] ODD_THREAD: READY -> RUNNING
+
+[MUTEX] ODD_THREAD acquired lock
+[EXECUTE] ODD_THREAD printing: 1
+[SIGNAL] ODD_THREAD signaling EVEN thread
+[MUTEX] ODD_THREAD released lock
+    [SCHEDULER] ODD_THREAD: RUNNING -> READY
+
+[MAIN] Main thread entering WAITING state (pthread_join)...
+    [SCHEDULER] EVEN_THREAD: NEW -> READY
+
+[THREAD START] EVEN_THREAD created (TID: 131258956900032)
+    [SCHEDULER] EVEN_THREAD: READY -> RUNNING
+
+[MUTEX] EVEN_THREAD acquired lock
+[EXECUTE] EVEN_THREAD printing: 2
+[SIGNAL] EVEN_THREAD signaling ODD thread
+[MUTEX] EVEN_THREAD released lock
+    [SCHEDULER] EVEN_THREAD: RUNNING -> READY
+    [SCHEDULER] ODD_THREAD: READY -> RUNNING
+
+[MUTEX] ODD_THREAD acquired lock
+[EXECUTE] ODD_THREAD printing: 3
+[SIGNAL] ODD_THREAD signaling EVEN thread
+[MUTEX] ODD_THREAD released lock
+    [SCHEDULER] EVEN_THREAD: READY -> RUNNING
+
+[MUTEX] EVEN_THREAD acquired lock
+[EXECUTE] EVEN_THREAD printing: 4
+[SIGNAL] EVEN_THREAD signaling ODD thread
+[MUTEX] EVEN_THREAD released lock
+    [SCHEDULER] EVEN_THREAD: RUNNING -> READY
+    [SCHEDULER] ODD_THREAD: RUNNING -> READY
+    [SCHEDULER] EVEN_THREAD: READY -> RUNNING
+
+[MUTEX] EVEN_THREAD acquired lock
+    [SCHEDULER] EVEN_THREAD: RUNNING -> WAITING
+[WAIT] EVEN_THREAD waiting on condition variable (counter=5)
+    [SCHEDULER] ODD_THREAD: READY -> RUNNING
+
+[MUTEX] ODD_THREAD acquired lock
+[EXECUTE] ODD_THREAD printing: 5
+[SIGNAL] ODD_THREAD signaling EVEN thread
+[MUTEX] ODD_THREAD released lock
+    [SCHEDULER] ODD_THREAD: RUNNING -> READY
+    [SCHEDULER] EVEN_THREAD: WAITING -> READY
+    [CONTEXT SWITCH #1] Switching from EVEN_THREAD (vruntime=100)
+    [SCHEDULER] EVEN_THREAD: READY -> RUNNING
+[EXECUTE] EVEN_THREAD printing: 6
+[SIGNAL] EVEN_THREAD signaling ODD thread
+[MUTEX] EVEN_THREAD released lock
+    [SCHEDULER] EVEN_THREAD: RUNNING -> READY
+    [SCHEDULER] ODD_THREAD: READY -> RUNNING
+
+[MUTEX] ODD_THREAD acquired lock
+[EXECUTE] ODD_THREAD printing: 7
+[SIGNAL] ODD_THREAD signaling EVEN thread
+[MUTEX] ODD_THREAD released lock
+    [SCHEDULER] ODD_THREAD: RUNNING -> READY
+    [SCHEDULER] EVEN_THREAD: READY -> RUNNING
+
+[MUTEX] EVEN_THREAD acquired lock
+[EXECUTE] EVEN_THREAD printing: 8
+[SIGNAL] EVEN_THREAD signaling ODD thread
+[MUTEX] EVEN_THREAD released lock
+    [SCHEDULER] EVEN_THREAD: RUNNING -> READY
+    [SCHEDULER] ODD_THREAD: READY -> RUNNING
+
+[MUTEX] ODD_THREAD acquired lock
+    [SCHEDULER] EVEN_THREAD: READY -> RUNNING
+[EXECUTE] ODD_THREAD printing: 9
+[SIGNAL] ODD_THREAD signaling EVEN thread
+[MUTEX] ODD_THREAD released lock
+    [SCHEDULER] ODD_THREAD: RUNNING -> READY
+
+[MUTEX] EVEN_THREAD acquired lock
+[EXECUTE] EVEN_THREAD printing: 10
+[SIGNAL] EVEN_THREAD signaling ODD thread
+[MUTEX] EVEN_THREAD released lock
+    [SCHEDULER] EVEN_THREAD: RUNNING -> READY
+    [SCHEDULER] ODD_THREAD: READY -> RUNNING
+
+[MUTEX] ODD_THREAD acquired lock
+[EXECUTE] ODD_THREAD printing: 11
+[SIGNAL] ODD_THREAD signaling EVEN thread
+[MUTEX] ODD_THREAD released lock
+    [SCHEDULER] ODD_THREAD: RUNNING -> READY
+    [SCHEDULER] EVEN_THREAD: READY -> RUNNING
+
+[MUTEX] EVEN_THREAD acquired lock
+[EXECUTE] EVEN_THREAD printing: 12
+[SIGNAL] EVEN_THREAD signaling ODD thread
+[MUTEX] EVEN_THREAD released lock
+    [SCHEDULER] EVEN_THREAD: RUNNING -> READY
+    [SCHEDULER] ODD_THREAD: READY -> RUNNING
+
