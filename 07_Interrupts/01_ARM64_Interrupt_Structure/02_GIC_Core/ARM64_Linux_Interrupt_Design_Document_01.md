@@ -212,11 +212,3 @@ See [arch/arm64/include/asm/current.h](https://github.com/torvalds/linux/blob/ma
               back to EL0
 ```
 
-## Relevant Source References
-
-- [arch/arm64/kernel/entry.S](https://github.com/torvalds/linux/blob/master/arch/arm64/kernel/entry.S) — vector table, `call_on_irq_stack`
-- [arch/arm64/kernel/irq.c](https://github.com/torvalds/linux/blob/master/arch/arm64/kernel/irq.c) — `init_irq_stacks()`, per-CPU allocation
-- [arch/arm64/include/asm/irq.h](https://github.com/torvalds/linux/blob/master/arch/arm64/include/asm/irq.h) — `IRQ_STACK_SIZE`, `on_irq_stack()`
-- [arch/arm64/include/asm/stacktrace.h](https://github.com/torvalds/linux/blob/master/arch/arm64/include/asm/stacktrace.h) — unwinder handles task↔IRQ stack transitions via the saved `x29` frame record.
-
-Want me to dive into any of: the exact entry.S macros, the unwinder's stack-boundary logic, or how this interacts with `CONFIG_VMAP_STACK` and stack overflow detection?
